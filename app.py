@@ -7,6 +7,25 @@ pt = pickle.load(open('pt.pkl','rb'))
 books = pickle.load(open('books.pkl','rb'))
 similarity_scores = pickle.load(open('similarity_scores.pkl','rb'))
 
+
+import os
+import requests
+
+def download_model_file(url, filename):
+    if not os.path.exists(filename):
+        print(f"Downloading {filename}...")
+        r = requests.get(url)
+        with open(filename, "wb") as f:
+            f.write(r.content)
+        print(f"Saved {filename}")
+    else:
+        print(f"{filename} already exists.")
+
+# Download all required .pkl files
+download_model_file("https://drive.google.com/uc?export=download&id=1AMmcRogrprHg_if30I5rGoNQdLJ6kqP-", "books.pkl")
+download_model_file("https://drive.google.com/uc?export=download&id=1CIvEzMDaMdOmyAtsyQ1lYurxvF1XfxMC", "similarity_scores.pkl")
+download_model_file("https://drive.google.com/uc?export=download&id=1OBPxhMgY9RcFU8R8Zl8HSwYlPH7OCZiK", "pt.pkl")
+
 app = Flask(__name__)
 
 @app.route('/')
