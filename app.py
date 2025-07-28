@@ -2,12 +2,6 @@ from flask import Flask,render_template,request
 import pickle
 import numpy as np
 
-popular_df = pickle.load(open('popular.pkl','rb'))
-pt = pickle.load(open('pt.pkl','rb'))
-books = pickle.load(open('books.pkl','rb'))
-similarity_scores = pickle.load(open('similarity_scores.pkl','rb'))
-
-
 import os
 import requests
 
@@ -25,6 +19,14 @@ def download_model_file(url, filename):
 download_model_file("https://drive.google.com/uc?export=download&id=1AMmcRogrprHg_if30I5rGoNQdLJ6kqP-", "books.pkl")
 download_model_file("https://drive.google.com/uc?export=download&id=1CIvEzMDaMdOmyAtsyQ1lYurxvF1XfxMC", "similarity_scores.pkl")
 download_model_file("https://drive.google.com/uc?export=download&id=1OBPxhMgY9RcFU8R8Zl8HSwYlPH7OCZiK", "pt.pkl")
+download_model_file("https://drive.google.com/uc?export=download&id=1kHcttmZqRD07OTx4IyHV91mIuEO2isQm", "popular.pkl")
+
+# Add more as needed
+
+popular_df = pickle.load(open('popular.pkl','rb'))
+pt = pickle.load(open('pt.pkl','rb'))
+books = pickle.load(open('books.pkl','rb'))
+similarity_scores = pickle.load(open('similarity_scores.pkl','rb'))
 
 app = Flask(__name__)
 
